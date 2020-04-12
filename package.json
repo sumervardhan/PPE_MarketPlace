@@ -1,0 +1,19 @@
+{
+  "name": "ppe_marketplace",
+  "version": "1.0.0",
+  "description": "Online Market Place for Indian manufacturers to list PPE, and those in need to solicit it from manufacturers in their localities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumervardhan/PPE_MarketPlace.git"
+  },
+  "author": "Sumer Vardhan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sumervardhan/PPE_MarketPlace/issues"
+  },
+  "homepage": "https://github.com/sumervardhan/PPE_MarketPlace#readme"
+}
