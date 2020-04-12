@@ -16,6 +16,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true}, (err, client) 
     if (err) return console.error(err)
     console.log('Connected to Database')
     const db = client.db('test')
+    const citiesDB = db.collection('cities')
 
     app.get('/', function (req, res) {
         res.render('index', {weather: null, error: null});
@@ -38,6 +39,11 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true}, (err, client) 
                 }
             }
         });
+    })
+
+    app.post('/addCity', function (req, res) {
+        citiesDB.insertOne(req.body)
+        res.render('index', {weather: null, error: null});
     })
 
     app.listen(3000, function () {

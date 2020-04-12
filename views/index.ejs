@@ -9,9 +9,12 @@
 <body>
 <div class="container">
     <fieldset>
-        <form action="/" method="post">
+        <form action="/addCity" method="post">
             <input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>
-            <input type="submit" class="ghost-button" value="Get Weather">
+            <input name="supplyType" type="text" class="ghost-input" placeholder="Supply Type" required>
+            <input name="quantity" type="text" class="ghost-input" placeholder="Quantity" required>
+            <input name="ppi" type="text" class="ghost-input" placeholder="Price Per Item" required>
+            <input type="submit" class="ghost-button" value="Add Listing">
         </form>
         <% if(weather !== null){ %>
             <p><%= weather %></p>
