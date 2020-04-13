@@ -22,32 +22,33 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true}, (err, client) 
         res.render('index', {weather: null, error: null});
     })
 
-    app.post('/', function (req, res) {
-        let city = req.body.city;
-        let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+    app.get('/search', function (req, res) {
+        db.collection('cities').find().toArray()
+            .then(results => {
+                res.render('listings.ejs', {elements: results, error: null, city: null, supplyType: null})
+            })
+            .catch(/* ... */)
+    })
 
-        request(url, function (err, response, body) {
-            if(err){
-                res.render('index', {weather: null, error: 'Error, please try again'});
-            } else {
-                let weather = JSON.parse(body)
-                if(weather.main == undefined){
-                    res.render('index', {weather: null, error: 'Error, please try again'});
-                } else {
-                    let weatherText = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-                    res.render('index', {weather: weatherText, error: null});
-                }
-            }
-        });
+    app.post('/search', function (req, res) {
+        let city = req.body.city
+        let supplyType = req.body.supplyType
+        console.log(city)
+        console.log(supplyType)
+        db.collection('cities').find().toArray()
+            .then(results => {
+                res.render('listings.ejs', {elements: results, error: null, city: city, supplyType: supplyType})
+            })
+            .catch()
     })
 
     app.post('/addCity', function (req, res) {
         citiesDB.insertOne(req.body)
-        res.render('index', {weather: null, error: null});
+        res.render('index');
     })
 
     app.listen(3000, function () {
-        console.log('PPE Marketplace listening on port 3000!')
+        console.log('PPE Marketplace listening on port 3000')
     })
 })
 
