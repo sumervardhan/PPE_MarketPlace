@@ -10,13 +10,27 @@
 <div class="container">
     <fieldset>
         <form action="/addCity" method="post">
-            <input name="city" type="text" class="ghost-input" placeholder="Where are you? (City)" required>
+            <h1 class = "ghost-input">Have PPE to sell?</h1>
+            <label class = "ghost-input" for="city">Where are you?</label>
+            <select name="city" type="text" class="ghost-button" id = "city" required>
+                <option value="New Delhi">New Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Chennai">Chennai</option>
+            </select>
+            <label class = "ghost-input" for="org">PPE You are Selling</label>
+            <select name="city" type="text" class="ghost-button" id = "supplyType" required>
+                <option value="Face Shield">Face Shield</option>
+                <option value="Face Mask">Face Mask</option>
+                <option value="Shoe Cover">Shoe Cover</option>
+                <option value="Protective Overalls">Protective Overalls</option>
+            </select>
             <input name="org" type="text" class="ghost-input" placeholder="Your name (or organization name)" required>
-            <input name="supplyType" type="text" class="ghost-input" placeholder="What are you providing?" required>
             <input name="quantity" type="text" class="ghost-input" placeholder="How many can you provide?" required>
             <input name="ppi" type="text" class="ghost-input" placeholder="Price Per Item" required>
             <input type="submit" class="ghost-button" value="Add Listing">
         </form>
+        <h1 class = "ghost-input">Looking for PPE?</h1>
         <form action="/search" method="get">
             <input type="submit" class="ghost-button" value="Search For Listing">
         </form>
