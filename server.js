@@ -20,7 +20,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true}, (err, client) 
     const citiesDB = db.collection('cities')
 
     app.get('/', function (req, res) {
-        res.render('templateIndex.ejs', {elements: null, error: null, city: null, supplyType: null});
+        res.render('index.ejs', {elements: null, error: null, city: null, supplyType: null});
     })
 
     app.post('/search', function (req, res) {
@@ -39,7 +39,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true}, (err, client) 
     })
 
     app.listen(port, function () {
-        console.log('PPE Marketplace listening on port 3000')
+        console.log('PPE Marketplace listening on port 8080')
     })
 })
 
