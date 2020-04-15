@@ -4,12 +4,12 @@ const request = require('request');
 const MongoClient = require('mongodb').MongoClient
 const app = express()
 
-const apiKey = 'bd36cbc804584441c7c21b948094a79e';
+app.set('view engine', 'ejs')
+
 const connectionString = 'mongodb+srv://ppedata:samplepassword@cluster0-hpc2g.mongodb.net/test?';
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('view engine', 'ejs')
 
 MongoClient.connect(connectionString, {useUnifiedTopology: true}, (err, client) => {
 
@@ -19,22 +19,12 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true}, (err, client) 
     const citiesDB = db.collection('cities')
 
     app.get('/', function (req, res) {
-        res.render('index', {weather: null, error: null});
-    })
-
-    app.get('/search', function (req, res) {
-        db.collection('cities').find().toArray()
-            .then(results => {
-                res.render('listings.ejs', {elements: results, error: null, city: null, supplyType: null})
-            })
-            .catch(/* ... */)
+        res.render('templateIndex.ejs', {elements: null, error: null, city: null, supplyType: null});
     })
 
     app.post('/search', function (req, res) {
         let city = req.body.city
         let supplyType = req.body.supplyType
-        console.log(city)
-        console.log(supplyType)
         db.collection('cities').find().toArray()
             .then(results => {
                 res.render('listings.ejs', {elements: results, error: null, city: city, supplyType: supplyType})
@@ -44,7 +34,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true}, (err, client) 
 
     app.post('/addCity', function (req, res) {
         citiesDB.insertOne(req.body)
-        res.render('index');
+        res.redirect('/')
     })
 
     app.listen(3000, function () {

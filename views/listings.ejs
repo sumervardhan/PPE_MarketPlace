@@ -1,28 +1,85 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Test</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <title>PPE Marketplace</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 </head>
-<body>
-<div class="container">
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <a class="logo" href="templateIndex.ejs">Log In</a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="templateIndex.ejs">Home</a></li>
+        <li><a href="elements.html">Elements</a></li>
+        <li><a href="generic.html">Generic</a></li>
+    </ul>
+</nav>
+
+<!-- Banner -->
+<section id="banner">
+    <div class="inner">
+        <h1>A marketplace for PPE</h1>
+        <p>Connecting those who can supply PPE to those who need it<br /></p>
+    </div>
+    <video autoplay loop muted playsinline src="images/banner.mp4"></video>
+</section>
+
+<section class="container">
     <fieldset>
         <form action="/search" method="post">
-            <input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>
-            <input type="submit" class="ghost-button" value="Search for Vendors Nearby">
+            <h2 align="center"><br />Search for PPE Listings</h2>
+            <div class = "row gtr-uniform">
+                <div class = "col-6 col-12-xsmall">
+                    <select name="city" type="text" id = "city" required>
+                        <option value="Where are you?">Where are you?</option>
+                        <option value="New Delhi">New Delhi</option>
+                        <option value="Gurgaon">Gurgaon</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Chennai">Chennai</option>
+                    </select>
+                </div>
+                <div class = "col-6 col-12-xsmall">
+                    <select name="supplyType" type="text" id = "supplyType" required>
+                        <option value="Supply Type">Supply Type</option>
+                        <option value="Face Shield">Face Shield</option>
+                        <option value="Face Mask">Face Mask</option>
+                        <option value="Shoe Cover">Shoe Cover</option>
+                        <option value="Protective Overalls">Protective Overalls</option>
+                    </select>
+                </div>
+                <div>
+            <input type="submit" value="Search for Vendors Nearby">
+                </div>
+            </div>
         </form>
         <% if(elements !== null){ %>
             <ul>
                 <h1><%= city %></h1>
                 <% for(var i = 0; i < elements.length; i++) {%>
                         <% if (elements[i].city == city) {%>
-                            <li class = "ghost-input"> Provider: <%= elements[i].org %> </li>
+                            <li> Provider: <%= elements[i].org %> </li>
                             <ul>
-                                <li class = "ghost-input"> Gear Type: <%= elements[i].supplyType %> </li>
-                                <li class = "ghost-input"> Quantity: <%= elements[i].quantity %></li>
-                                <li class = "ghost-input"> Price Per Item: <%= elements[i].ppi %></li>
+                                <li> Gear Type: <%= elements[i].supplyType %> </li>
+                                <li> Quantity: <%= elements[i].quantity %></li>
+                                <li> Price Per Item: <%= elements[i].ppi %></li>
                             </ul>
                         <% }%>
                     <% }%>
@@ -33,6 +90,13 @@
             <p><%= error %></p>
         <% } %>
     </fieldset>
-</div>
+</section>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
 </body>
 </html>
