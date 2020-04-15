@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const MongoClient = require('mongodb').MongoClient
 const app = express()
+var port = process.env.PORT || 8080;
 
 app.set('view engine', 'ejs')
 
@@ -37,7 +38,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true}, (err, client) 
         res.redirect('/')
     })
 
-    app.listen(3000, function () {
+    app.listen(port, function () {
         console.log('PPE Marketplace listening on port 3000')
     })
 })
