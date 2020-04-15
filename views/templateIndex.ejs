@@ -54,7 +54,7 @@
 									<a href="#" class="icon fa-paper-plane-o"><span class="label">Icon</span></a>
 									<h3>Can you provide PPE?</h3>
 								</header>
-								<button type = "button" class = "button primary fit" onclick = "window.location.href = '/search'">List your PPE here</button>
+								<button type = "button" class = "button primary fit" onclick = "document.getElementById('cta').scrollIntoView()">List your PPE here</button>
 							</div>
 						</section>
 						<section>
@@ -63,7 +63,7 @@
 									<a href="#" class="icon fa-qrcode"><span class="label">Icon</span></a>
 									<h3>Do you need PPE?</h3>
 								</header>
-								<button type = "button" class = "button primary fit" onclick = "window.location.href = '/search'">Search for PPE suppliers near you</button>
+								<button type = "button" class = "button primary fit" onclick = "document.getElementById('buy').scrollIntoView()">Search for PPE suppliers near you</button>
 							</div>
 						</section>
 						<section>
@@ -72,7 +72,7 @@
 									<a href="#" class="icon fa-line-chart"><span class="label">Icon</span></a>
 									<h3>Coronavirus Tracker</h3>
 								</header>
-								<button type = "button" class = "button primary fit" onclick = "window.location.href = 'https://www.worldometers.info/coronavirus/country/india/'">Latest</button>
+								<button type = "button" class = "button primary fit" onclick = "window.location.href = 'https://www.worldometers.info/coronavirus/country/india/'">Latest stats</button>
 							</div>
 						</section>
 					</div>
@@ -81,11 +81,78 @@
 
 		<!-- CTA -->
 			<section id="cta" class="wrapper">
-				<div class="inner">
-					<h2>Curabitur ullamcorper ultricies</h2>
-					<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
-				</div>
+				<form action="/addCity" method="post">
+					<h1 name = "SellForm">Create PPE Listing</h1>
+					<div class = "row gtr-uniform" align="centre">
+						<div class = "col-6 col-12-xsmall">
+					<select name="city" type="text" id = "city" required>
+						<option value="Where are you?">Where are you?</option>
+						<option value="New Delhi">New Delhi</option>
+						<option value="Mumbai">Mumbai</option>
+						<option value="Bangalore">Bangalore</option>
+						<option value="Chennai">Chennai</option>
+					</select>
+						</div>
+						<div class = "col-6 col-12-xsmall">
+					<select name="supplyType" type="text" id = "supplyType" required>
+						<option value="Supply Type">Supply Type</option>
+						<option value="Face Shield">Face Shield</option>
+						<option value="Face Mask">Face Mask</option>
+						<option value="Shoe Cover">Shoe Cover</option>
+						<option value="Protective Overalls">Protective Overalls</option>
+					</select>
+						</div>
+						<div class = "col-6 col-12-xsmall">
+					<input name="org" type="text" placeholder="Your name (or organization name)" required>
+						</div>
+						<div class = "col-6 col-12-xsmall">
+							<input name="email" type="text" placeholder="Your email" required>
+						</div>
+						<div class = "col-6 col-12-xsmall">
+							<input name="phno" type="text" placeholder="Your phone number" required>
+						</div>
+						<div class = "col-6 col-12-xsmall">
+					<input name="quantity" type="text" placeholder="How many can you provide?" required>
+						</div><div class = "col-6 col-12-xsmall">
+					<input name="ppi" type="text" placeholder="Price Per Item" required>
+						</div><div class = "col-6 col-12-xsmall">
+					<input type="submit" value="Add Listing">
+						</div>
+					</div>
+				</form>
 			</section>
+
+		<div id="buy" class="wrapper">
+			<form action="/search" method="post">
+				<h1 align="center">Search for PPE Listings</h1>
+				<div class = "row gtr-uniform">
+					<div class = "col-6 col-12-xsmall">
+						<select name="city" type="text" id = "city" required>
+							<option value="Where are you?">Where are you?</option>
+							<option value="New Delhi">New Delhi</option>
+							<option value="Gurgaon">Gurgaon</option>
+							<option value="Mumbai">Mumbai</option>
+							<option value="Bangalore">Bangalore</option>
+							<option value="Chennai">Chennai</option>
+							<option value="Faridabad">Faridabad</option>
+						</select>
+					</div>
+					<div class = "col-6 col-12-xsmall">
+						<select name="supplyType" type="text" id = "supplyType" required>
+							<option value="Supply Type">Supply Type</option>
+							<option value="Face Shield">Face Shield</option>
+							<option value="Face Mask">Face Mask</option>
+							<option value="Shoe Cover">Shoe Cover</option>
+							<option value="Protective Overalls">Protective Overalls</option>
+						</select>
+					</div>
+					<div class = "col-6 col-12-xsmall">
+						<input align="center" type="submit" value="Search" class = "primary button large" >
+					</div>
+				</div>
+			</form>
+		</div>
+		</section>
 
 		<!-- Testimonials -->
 			<section class="wrapper">

@@ -19,22 +19,12 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true}, (err, client) 
     const citiesDB = db.collection('cities')
 
     app.get('/', function (req, res) {
-        res.render('templateIndex.ejs');
-    })
-
-    app.get('/search', function (req, res) {
-        db.collection('cities').find().toArray()
-            .then(results => {
-                res.render('listings.ejs', {elements: results, error: null, city: null, supplyType: null})
-            })
-            .catch(/* ... */)
+        res.render('templateIndex.ejs', {elements: null, error: null, city: null, supplyType: null});
     })
 
     app.post('/search', function (req, res) {
         let city = req.body.city
         let supplyType = req.body.supplyType
-        console.log(city)
-        console.log(supplyType)
         db.collection('cities').find().toArray()
             .then(results => {
                 res.render('listings.ejs', {elements: results, error: null, city: city, supplyType: supplyType})
@@ -44,7 +34,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true}, (err, client) 
 
     app.post('/addCity', function (req, res) {
         citiesDB.insertOne(req.body)
-        res.render('index');
+        res.redirect('/')
     })
 
     app.listen(3000, function () {
